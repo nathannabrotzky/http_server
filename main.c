@@ -11,7 +11,7 @@ int main() {
     struct sockaddr_in clientAddr;
     int clientAddrLen = sizeof(clientAddr);
     char recvBuf[4096];
-    //int bytesReceived;
+    int bytesReceived;
 
     // Initialize Winsock
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -60,7 +60,7 @@ int main() {
 
     printf("Client connected.\n");
 
-    int bytesReceived = recv(clientSocket, recvBuf, sizeof(recvBuf) - 1, 0);
+    bytesReceived = recv(clientSocket, recvBuf, sizeof(recvBuf) - 1, 0);
     if (bytesReceived > 0) {
         recvBuf[bytesReceived] = '\0';
         printf("Received request:\n%s\n", recvBuf);
@@ -110,4 +110,5 @@ int main() {
     WSACleanup();
 
     return 0;
+
 }
